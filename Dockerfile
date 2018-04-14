@@ -8,8 +8,8 @@ WORKDIR /go/src/github.com/cloudflare/cloudflared/cmd/cloudflared
 
 RUN GOARCH=${GOARCH} GOARM=${GOARM} go build ./
 
-ARG arch
-FROM multiarch/alpine:${arch}-edge
+ARG ARCH
+FROM multiarch/alpine:${ARCH}-edge
 
 RUN apk add --no-cache ca-certificates
 
