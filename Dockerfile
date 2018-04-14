@@ -1,5 +1,8 @@
 FROM golang AS gobuild
 
+ARG GOARCH
+ARG GOARM
+
 RUN go get -v github.com/cloudflare/cloudflared/cmd/cloudflared
 WORKDIR /go/src/github.com/cloudflare/cloudflared/cmd/cloudflared
 
