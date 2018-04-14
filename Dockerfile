@@ -1,3 +1,4 @@
+ARG ARCH
 FROM golang AS gobuild
 
 ARG GOARCH
