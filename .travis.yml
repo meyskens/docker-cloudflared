@@ -19,8 +19,8 @@ before_install:
   - docker run --rm --privileged multiarch/qemu-user-static:register
 
 script:
-  - docker build -t $DOCKER_REPO:$TRAVIS_COMMIT --build-arg ARCH="$ARCH" --build-arg GOARCH="$GOARCH" --build-arg GOARM="$GOARM" ./
+  - docker build -t $DOCKER_REPO:$ARCH-$TRAVIS_COMMIT --build-arg ARCH="$ARCH" --build-arg GOARCH="$GOARCH" --build-arg GOARM="$GOARM" ./
 
 after_success:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-  - if [ "$TRAVIS_BRANCH" == "master" ] && [ "$TRAVIS_PULL_REQUEST" == "false" ]; then docker tag $DOCKER_REPO:$TRAVIS_COMMIT $DOCKER_REPO:latest; docker push $DOCKER_REPO:latest; fi
+  - if [ "$TRAVIS_BRANCH" == "master" ] && [ "$TRAVIS_PULL_REQUEST" == "false" ]; then docker tag $DOCKER_REPO:$ARCH-$TRAVIS_COMMIT $DOCKER_REPO:$ARCH-latest; docker push $DOCKER_REPO:$ARCH-latest; fi
