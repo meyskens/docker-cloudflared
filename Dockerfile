@@ -16,5 +16,4 @@ RUN apk add --no-cache ca-certificates
 
 COPY --from=gobuild /go/src/github.com/cloudflare/cloudflared/cmd/cloudflared/cloudflared /usr/local/bin/cloudflared
 
-ENTRYPOINT [ "cloudflared" ]
-CMD proxy-dns
+CMD [ "cloudflared", "proxy-dns", "--address", "0.0.0.0" ]
