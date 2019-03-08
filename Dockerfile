@@ -7,7 +7,7 @@ ARG GOARM
 RUN go get -v github.com/cloudflare/cloudflared/cmd/cloudflared
 WORKDIR /go/src/github.com/cloudflare/cloudflared/cmd/cloudflared
 
-RUN GOARCH=${GOARCH} GOARM=${GOARM} go build ./
+RUN CGO_ENABLED=0 GOARCH=${GOARCH} GOARM=${GOARM} go build -a -installsuffix cgo ./
 
 ARG ARCH
 FROM multiarch/alpine:${ARCH}-edge
